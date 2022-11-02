@@ -6,7 +6,7 @@
 const transformString = (str) => {
   return str
     .trim()
-    .toLocaleUpperCase();
+    .toUpperCase();
 };
 
 /**
@@ -16,14 +16,11 @@ const transformString = (str) => {
 // function should return max number from array
 const findMaxNumber = (array) => {
 
-  if (array.length === 0){
+  if (!array.length){
     return NaN;
   }
 
-  let result = array.reduce (function (maxNumber, currentNumber) {
-    return maxNumber > currentNumber ? maxNumber : currentNumber;
-  });
-  return result;
+  return Math.max(...array);
 
 };
 
@@ -35,14 +32,12 @@ const findMaxNumber = (array) => {
 const getStringWordsLength = (str) => {
   let array = [];
 
-   if (str.length === 0){
+   if (!str.length){
     return array;
   }else {
-    let result = str => str
+    return str
       .split(', ')
-      .map(el => el.length)  
-
-    return result(str);
+      .map(el => el.length) ;
   }
 };
 
@@ -53,7 +48,7 @@ const getStringWordsLength = (str) => {
  */
 // function returns array of numbers as result of initial number and degree
 const getTransformedNumbers = (numArray, degree) => {
-  return numArray.map (el => Math.pow (el, degree));
+  return numArray.map (el => el** degree);
 };
 
 /**
@@ -74,7 +69,7 @@ const getTransformedText = (text) => {
  */
 // function filters array and return only array of positive integers
 const getPositiveIntegers = (array) => {
-  return array.filter (el => el > 0 && typeof el === "number" && el != Infinity);
+  return array.filter (el => el > 0 && Number.isInteger(el) );
 };
 
 /**
@@ -84,7 +79,7 @@ const getPositiveIntegers = (array) => {
  */
 // functions return index of element in array
 const getElementIndex = (array, value) => {
-  return array.findIndex (array => array === value );
+  return array.indexOf ( value );
 };
 
 /**
@@ -104,11 +99,12 @@ const getItem = (array, value) => {
  */
 // function returns true if word is in every string in array and false if is not
 const isWordInEveryArrayString = (array, word) => {
-  if (array.length === 0){
+  if (!array.length){
     return false;
-  } else {
-    return array.every (el => el.includes (word));
-  }
+  } 
+    
+  return array.every (el => el.includes (word));
+  
 };
 
 /**
